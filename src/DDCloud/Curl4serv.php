@@ -11,10 +11,10 @@ class Curl4serv {
 	public function __construct($serviceName, $consulClient="") {
 		$consul = new Consul($consulClient);
 		$this->uri = $consul->getService($serviceName);
+		$this->logger = new Logger();
 		if ($this->uri == "") {
 			$this->logger->info('Error:  '.$serviceName." is null\n");
 		}
-		$this->logger = new Logger();
 	}
 
 	public function get($urlSuffix, $params) {
